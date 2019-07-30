@@ -27,7 +27,9 @@ app.use(session({
   store: new MongoStore({// 将 session 存储到 mongodb
     url: config.mongodb// mongodb 地址
   })
-}))
+})
+)
+
 // flash 中间件，用来显示通知
 app.use(flash())
 
@@ -47,6 +49,7 @@ app.use(function(req,res,next){
   res.locals.user = req.session.user;
   res.locals.success = req.flash('success').toString();
   res.locals.error = req.flash('error').toString();
+  
   next();
 })
 
